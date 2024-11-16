@@ -6,7 +6,7 @@
 class Character {
 private:
     Texture2D character;
-    const float characterSpeed = 5.0f;
+    const float characterSpeed = 8.0f;
     Vector2 position;
     Rectangle frameRec;
     int countFrame; // Number of frames for animation
@@ -16,7 +16,7 @@ private:
 
 public:
     Character(std::string texturePath, float x, float y, int frames) 
-        : countFrame(frames), currentFrame(0), updateTime(0.1f), runningTime(0.0f) {
+        : countFrame(frames), currentFrame(0), updateTime(5.0f), runningTime(5.0f) {
         character = LoadTexture(texturePath.c_str());
         position.x = x;
         position.y = y;
@@ -60,15 +60,27 @@ public:
         }
     }
 
-    void print() const {
-        std::cout << "Position: (" << position.x << ", " << position.y << ")" << std::endl;
-    }
-
     void draw() const {
         DrawTextureRec(character, frameRec, position, WHITE);
     }
 
     Texture2D getTexture() const {
         return character;
+    }
+
+    void setX(int x) {
+        position.x = x;
+    }
+
+    void setY(int y) {
+        position.y = y;
+    }
+
+    int getX() {
+        return position.x;
+    }
+
+    int getY() {
+        return position.y;
     }
 };
